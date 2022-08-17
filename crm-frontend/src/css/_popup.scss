@@ -1,0 +1,389 @@
+@import '_mixins.scss';
+
+/* Связь элементов HTML вызова popup с самим экземпляром popup делать по id popup-а */
+
+/* Имена классов для ручного формирования тела Popup в HTML
+popup               - имя класса используется в popup.js
+popup__place-Y-center
+popup__content      - имя класса используется в popup.js
+*/
+
+/* Класс .lock блокировки скролла у body - имя класса используется в popup.js */
+body.popup-lock {
+  overflow: hidden;
+}
+/* Классы popup */
+.popup {
+  position: fixed;
+  z-index: 100;
+  overflow-x: hidden;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  @include animeTransitionEasy08(all);
+
+  &.open { /* Класс .open для показа popup - имя класса используется в popup.js */
+    visibility: visible;
+    opacity: 1;
+  }
+  &__place-center-Y {
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    padding: 10px;
+  }
+  &__content {
+    position: relative;
+    overflow: hidden;
+    width: 450px;
+    padding: 24px 0 29px 0;
+    background-color: $colorWhite;
+    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.15);
+    /* Использовать совместно с .popup__content, который нужно разкомментировать */
+    @include animeTransitionEasy08(all);
+    /* - появление сверху */
+    /* transform: translate(0px, -100%); */
+    /* - появление сверху с поворотом */
+    transform: perspective(600px) translate(0px, -150%) rotateX(60deg);
+
+    &-edit {
+      padding: 0 30px 0 30px;
+    }
+    &-del {
+      padding: 22px 88px 27px 88px;
+    }
+    &-wait {
+      position: absolute;
+      z-index: 102;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      background-image: url(../img/icon-wait.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 36px;
+    }
+  }
+  &.open &__content {
+    /* - появление сверху */
+    /* transform: translate(0px, 0%); */
+    /* - появление сверху с поворотом */
+    transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+  }
+  &__btn-close {
+    position: absolute;
+    z-index: 101;
+    top: 15px;
+    right: 15px;
+    width: 29px;
+    height: 29px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    &-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  &__title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    color: $colorBlack;
+
+    &-id {
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 16px;
+      color: $colorTxtGrey;
+    }
+    &-del {
+      align-self: center;
+      margin-bottom: 11px;
+    }
+  }
+  &__form {
+    margin-bottom: 5px;
+
+    &-label {
+      position: relative;
+      display: block;
+      margin-bottom: 15px;
+      border-bottom: 1px solid $colorGrey;
+
+      &-text {
+        display: block;
+        color: $colorTxtGrey;
+
+        &-end {
+          font-weight: 600;
+          color: $colorFirm;
+        }
+      }
+    }
+    &-label.is-error {
+      border-bottom-color: $colorRed;
+    }
+    &-input {
+      padding: 0;
+      padding-bottom: 4px;
+      border: none;
+      outline: none;
+      width: 100%;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 19px;
+      color: $colorBlack;
+
+      &-error {
+        position: absolute;
+        z-index: 1;
+        bottom: -1.1em;
+        left: 0;
+        font-size: 9px;
+        line-height: 10px;
+        padding: 2px 3px;
+        color: $colorRed;
+        background-color: antiquewhite;
+      }
+    }
+    &-contact {
+      &-wrapper {
+        position: relative;
+        width: 100%;
+        height: 37px;
+      }
+      &-wrapper:not(:last-child) {
+        margin-bottom: 15px;
+      }
+      &-label-type {
+        width: 123px;
+        height: 100%;
+      }
+      &-select-type {
+        border: none;
+        border-radius: 0;
+        outline: none;
+      }
+      &-label-value {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 123px;
+        height: 100%;
+        padding: 8px 35px 8px 12px;
+        border-top: 1px solid $colorGrey;
+        border-right: 1px solid $colorGrey;
+        border-bottom: 1px solid $colorGrey;
+        border-left: none;
+      }
+      &-input-value {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        border: none;
+        outline: none;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 19px;
+        color: $colorBlack;
+        background-color: transparent;
+
+        &-error {
+          position: absolute;
+          z-index: 1;
+          width: inherit;
+          top: 3.1em;
+          left: 12px;
+          font-size: 9px;
+          line-height: 11px;
+          padding: 2px 3px;
+          color: $colorRed;
+          background-color: antiquewhite;
+        }
+      }
+    }
+  }
+  &__group-fields {
+    margin-bottom: 25px;
+  }
+  &__group-contacts {
+    padding-top: 25px;
+    background-color: $colorGrey03;
+  }
+  &__wraper-btn-new {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: $colorGrey03;
+
+    &.is-exist-contacts {
+      padding-top: 25px;
+      padding-bottom: 25px;
+    }
+  }
+  &__field-error {
+    align-self: center;
+    width: 255px;
+    margin-top: 8px;
+    margin-bottom: 17px;
+    text-align: center;
+    font-size: 10px;
+    line-height: 14px;
+    color: $colorRed;
+
+    &.is-error {
+      margin-bottom: 9px;
+    }
+  }
+  &__question {
+    align-self: center;
+    margin: 0;
+    font-size: 14px;
+    line-height: 19px;
+    text-align: center;
+    color: $colorBlack;
+  }
+  &__wraper-btn-confirm {
+    margin-bottom: 5px;
+  }
+}
+
+/* Классы для custom select */
+//.select {}
+.choices {
+  width: 123px;
+  font-size: 12px;
+  line-height: 16px;
+  color: $colorBlack;
+
+  &__inner {
+    min-height: auto;
+    height: 37px;
+    padding-top: 9px;
+    padding-left: 12px;
+    border: 1px solid $colorGrey;
+    border-radius: 0;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    background-color: #E7E5EB;
+    @include animeTransitionEasyInOut03(color);
+  }
+  &__inner:hover {
+    color: $colorFirm;
+  }
+  .is-open &__inner {
+    position: relative;
+    z-index: 2;
+  }
+  &__list--single {
+    padding-top: 0px;
+    padding-left: 0px;
+  }
+  &__list--dropdown {
+    padding: 4px 0;
+    border-color: $colorGrey;
+    border-radius: 0;
+    background-color: #F4F3F6;
+    opacity: 0;
+    @include animeTransitionEasy03(visibility opacity);
+  }
+  &__list--dropdown.is-active {
+    opacity: 1;
+  }
+  &__list--dropdown &__item {
+    padding: 6px 12px;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  &__list--dropdown &__item.is-selected {
+    font-weight: 600;
+  }
+  &__list--dropdown &__item.is-highlighted,
+  &__list--dropdown &__item:hover {
+    background-color: $colorGrey05;
+  }
+  &[data-type*=select-one]::after {
+    top: 42%;
+    right: 10px;
+    width: 7px;
+    height: 7px;
+    border-width: 1px;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px;
+    border-left: 1px;
+    border-style: solid;
+    border-color: $colorFirm;
+    transform: rotate(-45deg);
+    @include animeTransitionEasyInOut03(transform);
+  }
+  &[data-type*=select-one].is-open::after {
+    z-index: 2;
+    top: 65%;
+    border-color: $colorFirm;
+    transform: rotate(135deg);
+  }
+}
+
+/* -------------------------------------------------- Медиа-запросы -------------------------------------------------- */
+@media (max-width: $mediaBorderMax320) { /* для макета Mobile 320 */
+  /* Классы popup */
+  .popup {
+    &__close {
+      top: 3px;
+      right: 3px;
+    }
+    &__place-center-Y {
+      overflow-x: auto;
+    }
+    &__content {
+      // max-width: 300px;
+      min-width: 300px;
+      padding: 24px 0 25px 0;
+
+      &-edit {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+      &-del {
+        padding: 22px 12px 27px 12px;
+      }
+    }
+    &__form {
+      &-contact {
+        &-label-type {
+          width: 110px;
+        }
+        &-label-value {
+          left: 110px;
+          padding-left: 6px;
+        }
+        &-input-value {
+          &-error {
+            left: 6px;
+          }
+        }
+      }
+    }
+  }
+
+  /* Классы для custom select */
+  .choices {
+    width: 110px;
+  }
+}

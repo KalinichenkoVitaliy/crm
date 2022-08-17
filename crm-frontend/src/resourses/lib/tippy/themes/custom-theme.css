@@ -1,0 +1,40 @@
+:root {
+  /* Переменные применяемых цветов */
+  --color-tippy-text: #ffffff;
+  --color-tippy-bg-mytheme: #333333;
+}
+
+/* Оформление подсказки */
+.tippy-box {
+  border-radius: 0;
+}
+
+/* Оформление текстового поля */
+.tippy-box .tippy-content {
+  padding: 7px 14px;
+}
+
+/* ---------------------------------------- Тема mytheme ---------------------------------------- */
+/* Оформление текстового поля */
+.tippy-box[data-theme~='mytheme'] {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--color-tippy-text);
+  background-color: var(--color-tippy-bg-mytheme);
+}
+
+/* Оформление цвета стрелки */
+.tippy-box[data-theme~='mytheme'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: var(--color-tippy-bg-mytheme);
+}
+.tippy-box[data-theme~='mytheme'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: var(--color-tippy-bg-mytheme);
+}
+.tippy-box[data-theme~='mytheme'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: var(--color-tippy-bg-mytheme);
+}
+.tippy-box[data-theme~='mytheme'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: var(--color-tippy-bg-mytheme);
+}

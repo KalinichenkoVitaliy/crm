@@ -1,0 +1,542 @@
+@import '_mixins.scss';
+@import '_variables.scss';
+
+:root {
+  /* Разментности */
+    --count-line-table: 5;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans-Regular.woff2") format("woff2"),
+    url("../fonts/OpenSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans-SemiBold.woff2") format("woff2"),
+    url("../fonts/OpenSans-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans-Bold.woff2") format("woff2"),
+    url("../fonts/OpenSans-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+body {
+  font-family: OpenSans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  background-color: $bodyBGColor;
+}
+
+/* Общие классы */
+.btn {
+  cursor: pointer;
+
+  &__empty {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 12px 26px 12px 26px;
+    outline: none;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+
+    &-content {
+      position: relative;
+      padding-left: 32px;
+
+      &-icon {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 22px;
+        height: 16px;
+      }
+    }
+  }
+  &__change {
+    height: 20px;
+    margin: 2.5px 20px 2.5px 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    &-text {
+      position: relative;
+      flex-wrap: nowrap;
+      padding-left: 16px;
+      font-size: 14px;
+      line-height: 19px;
+      text-align: center;
+
+      &-icon {
+        position: absolute;
+        top: 2px;
+        left: 0;
+      }
+    }
+  }
+  &__delete {
+    height: 20px;
+    margin: 2.5px 0 2.5px 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    &-text {
+      position: relative;
+      flex-wrap: nowrap;
+      padding-left: 16px;
+      font-size: 14px;
+      line-height: 19px;
+      text-align: center;
+
+      &-icon {
+        position: absolute;
+        top: 2px;
+        left: 0;
+      }
+    }
+  }
+  &__underline {
+    align-self: center;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    background-color: transparent;
+  }
+  &__fill {
+    align-self: center;
+    padding: 12px 35px 12px 35px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: $colorWhite;
+  }
+  &__newcont {
+    align-self: center;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    background-color: transparent;
+
+    &-text {
+      position: relative;
+      padding-left: 20px;
+
+      &-icon {
+        position: absolute;
+        align-self: center;
+        width: 16px;
+        height: 16px;
+        top: 2px;
+        left: 0;
+      }
+    }
+  }
+  &__delcont {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    width: 27px;
+    height: 37px;
+    padding: 0;
+    border: 1px solid;
+    outline: none;
+    background-color: transparent;
+
+    &-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Header */
+.header {
+  background-color: $colorWhite;
+  box-shadow: 0px 9.03012px 27.0904px rgba(176, 190, 197, 0.32), 0px 3.38629px 5.64383px rgba(176, 190, 197, 0.32);
+
+  &__content {
+    align-items: center;
+  }
+  &__logo {
+    object-fit: cover;
+    object-position: center;
+  }
+  &__form {
+    align-items: center;
+    width: 581px;
+    height: 44px;
+    border: 1px solid $colorBlack02;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    &-input {
+      border: none;
+      font-size: 14px;
+      line-height: 19px;
+      color: $colorTxtGrey;
+    }
+  }
+}
+
+/* Main */
+.main {
+  &__title {
+    margin-top: 0;
+    font-weight: bold;
+    color: $colorBlack;
+  }
+  &-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: 38px;
+  }
+  &-content {
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+
+    &-loading {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: url(../img/icon-wait.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 36px;
+    }
+  }
+}
+.table {
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-template-rows: repeat(1, 48px) repeat(var(--count-line-table), auto);
+  gap: 0;
+  width: 100%;
+  height: 348px;
+  background-color: $colorWhite;
+
+  &__title {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    align-items: flex-end;
+    padding: 2px 10px 8px 10px;
+    font-size: 12px;
+    line-height: 16px;
+    color: $colorTxtGrey;
+    background-color: $bodyBGColor;
+
+    &-column1, &-column2, &-column3, &-column4 {
+      cursor: pointer;
+    }
+    &-text {
+      color: inherit;
+    }
+    &-ending {
+      white-space: nowrap;
+      color: $colorFirm;
+
+      &-icon {
+        vertical-align: bottom;
+        width: 12px;
+        height: 14px;
+      }
+    }
+  }
+  &__title.is-sort {
+    color: $colorFirm;
+  }
+  &__cell {
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    height: auto;
+    padding: 5px 10px 4px 10px;
+    border-bottom: 1px solid $bodyBGColor;
+    font-size: 14px;
+    line-height: 19px;
+    color: $colorBlack;
+
+    &-grey {
+      color: $colorTxtGrey;
+    }
+    &-icon {
+      width: 16px;
+      height: 16px;
+      margin: 3.5px 3.5px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    &-more {
+      justify-content: center;
+      align-items: center;
+      width: 16px;
+      height: 16px;
+      margin: 3.5px 3.5px;
+      border: 1px solid $colorFirm;
+      border-radius: 50%;
+      font-weight: 600;
+      font-size: 8px;
+      line-height: 11px;
+      color: $colorBlack;
+    }
+  }
+}
+
+/* Client */
+.client {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &__content {
+    overflow-x: auto;
+    position: relative;
+    padding: 20px 10px;
+    background-color: $colorWhite;
+  }
+  &__title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  &__group-contacts {
+    padding: 0 8px;
+  }
+  &__desc {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  &__data {
+    font-weight: 600;
+  }
+  &__content-loading {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url(../img/icon-wait.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 36px;
+  }
+}
+
+/* -------------------------------------------------- Медиа-запросы -------------------------------------------------- */
+@media (min-width: $mediaBorderMin1024) { /* Медиа-запрос для макета Tablet 1024 */
+  /* Общие классы */
+  .container {
+    max-width: $contentMaxWidht1024 + $containerPadRL1024*2;
+    padding-right: $containerPadRL1024;
+    padding-left: $containerPadRL1024;
+  }
+
+  /* Header */
+  .header {
+    &__content {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    &__logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 53px;
+    }
+  }
+
+  /* Main */
+  .main {
+    padding-top: 40px;
+    padding-bottom: 102px;
+
+    &__title {
+      margin-bottom: 5px;
+      font-size: 24px;
+      line-height: 33px;
+    }
+    &-content {
+      max-width: $contentMaxWidht1024 + $containerPadRL1024*2;
+      padding-right: $containerPadRL1024;
+      padding-left: $containerPadRL1024;
+    }
+  }
+}
+
+@media (min-width: $mediaBorderMin768) and (max-width: $mediaBorderMax768) {  /* для макета Tablet 768 */
+  /* Общие классы */
+  .container {
+    max-width: $contentMaxWidht768 + $containerPadRL768*2;
+    padding-right: $containerPadRL768;
+    padding-left: $containerPadRL768;
+  }
+
+  /* Header */
+  .header {
+    &__content {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    &__logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 53px;
+    }
+  }
+
+  /* Main */
+  .main {
+    padding-top: 40px;
+    padding-bottom: 102px;
+
+    &__title {
+      margin-bottom: 5px;
+      font-size: 24px;
+      line-height: 33px;
+    }
+    &-content {
+      max-width: $contentMaxWidht768 + $containerPadRL768*2;
+      padding-right: $containerPadRL768;
+      padding-left: $containerPadRL768;
+    }
+  }
+}
+
+@media (max-width: $mediaBorderMax320) { /* для макета Mobile 320 */
+  /* Общие классы */
+  .container {
+    max-width: $contentMaxWidht320 + $containerPadRL320*2;
+    padding-right: $containerPadRL320;
+    padding-left: $containerPadRL320;
+  }
+
+  /* Header */
+  .header {
+    &__content {
+      justify-content: center;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+    &__logo {
+      width: 24px;
+      height: 24px;
+    }
+    &__form {
+      display: none;
+    }
+  }
+
+  /* Main */
+  .main {
+    padding-top: 30px;
+    padding-bottom: 176px;
+
+    &__title {
+      margin-bottom: 0;
+      font-size: 18px;
+      line-height: 25px;
+    }
+    &-content {
+      width: $contentMaxWidht320 + $containerPadRL320*2;
+      margin-right: 0;
+      margin-left: 0;
+      padding-right: $containerPadRL320;
+      padding-left: $containerPadRL320;
+    }
+  }
+  .table {
+    width: fit-content;
+  }
+
+  /* Client */
+  .client {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &__content {
+      padding: 10px 5px;
+    }
+    &__title {
+      margin-bottom: 10px;
+      font-size: 18px;
+      line-height: 24px;
+    }
+    &__desc {
+      margin-bottom: 5px;
+      font-size: 11px;
+      line-height: 16px;
+    }
+  }
+}

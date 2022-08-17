@@ -1,0 +1,172 @@
+@import '_mixins.scss';
+
+/* Анимации активных элементов*/
+.btn__empty {
+  border: 1px solid $colorFirm;
+  color: $colorFirm;
+  background-color: transparent;
+  @include animeTransitionEasyInOut03(color background-color);
+
+  & path {
+    @include animeTransitionEasyInOut03(fill);
+  }
+  &:focus {
+    color: $colorWhite;
+    background-color: $colorFirmF;
+  }
+  &:focus path {
+    fill: $colorWhite;
+  }
+  &:hover {
+    color: $colorWhite;
+    background-color: $colorFirmH;
+  }
+  &:hover path {
+    fill: $colorWhite;
+  }
+  &:active {
+    color: $colorWhite;
+    background-color: $colorFirm;
+  }
+  &:disabled {
+    border-color: $colorBlack02;
+    color: $colorGrey;
+    background-color: transparent;
+    cursor: auto;
+  }
+}
+
+.btn__change-text {
+  color: $colorBlack;
+  @include animeTransitionEasyInOut03(color);
+
+  &:hover {
+    color: $colorFirm;
+  }
+}
+
+.btn__delete-text {
+  color: $colorBlack;
+  @include animeTransitionEasyInOut03(color);
+
+  &:hover {
+    color: $colorRed;
+  }
+}
+
+.btn__underline {
+  color: $colorBlack;
+  @include animeTransitionEasyInOut03(color);
+
+  &:hover {
+    color: $colorFirm;
+  }
+}
+
+.btn__fill {
+  background-color: $colorFirm;
+  @include animeTransitionEasyInOut03(background-color);
+
+  &:focus {
+    background-color: $colorFirmF;
+  }
+  &:hover {
+    background-color: $colorFirmH;
+  }
+  &:active {
+    background-color: $colorFirm;
+  }
+  &:disabled {
+    background-color: $colorGrey;
+    cursor: auto;
+  }
+}
+
+.btn__newcont {
+  color: $colorBlack;
+  @include animeTransitionEasyInOut03(color);
+
+  &:hover {
+    color: $colorFirm;
+  }
+  & .icon-normal,
+  & .icon-hover {
+    @include animeTransitionEasyInOut03(opacity);
+  }
+  & .icon-normal,
+  &:hover .icon-hover {
+    opacity: 1;
+  }
+  & .icon-hover,
+  &:hover .icon-normal {
+    opacity: 0;
+  }
+}
+
+.btn__delcont {
+  border-color: $colorGrey;
+  @include animeTransitionEasyInOut03(border-color);
+
+  &:hover {
+    border-color: $colorRed;
+  }
+  & &-icon path {
+    fill: $colorGrey;
+    @include animeTransitionEasyInOut03(fill);
+  }
+  &:hover &-icon path {
+    fill: $colorRed;
+  }
+}
+
+.table__title-text {
+  @include animeTransitionEasyInOut03(color);
+
+  &:hover {
+    color: $colorBlack;
+  }
+}
+
+.table__cell.cell-1 {
+  .table__cell-link {
+    color: $colorTxtGrey;
+    @include animeTransitionEasyInOut03(color);
+  }
+  &:hover .table__cell-link {
+    color: $colorBlack;
+    @include animeTransitionEasyInOut03(color);
+
+    &:hover {
+      color: $colorFirm;
+      cursor: pointer;
+    }
+  }
+}
+
+.table__cell-icon {
+  opacity: 0.7;
+  @include animeTransitionEasyInOut03(opacity);
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.popup {
+  &__form {
+    &-label {
+      &-text {
+        font-size: 10px;
+        line-height: 14px;
+        transform: translateY(0);
+        @include animeTransitionEasyInOut03(font-size line-height transform);
+
+        &.as-placeholder {
+          font-size: 14px;
+          line-height: 19px;
+          transform: translateY(18px);
+        }
+      }
+    }
+  }
+}
